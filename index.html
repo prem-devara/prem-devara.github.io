@@ -154,13 +154,13 @@
       <h2>Projects</h2>
       <article class="project">
         <div class="project-text">
-          <p class="tags">PYTHON · CLAUDE HAIKU + SONNET · BOOTSTRAP INTERVALS</p>
+          <p class="tags">PYTHON · CLAUDE HAIKU + SONNET · CONFIDENCE RANGES</p>
           <h3>User Feedback Insights Agent</h3>
-          <p class="desc">An AI workflow that turns thousands of ChatGPT app reviews into product insights: themes, sentiment, weighted shares with uncertainty ranges, and a per-theme synthesis backed by real user quotes.</p>
+          <p class="desc">An AI agent that reads thousands of ChatGPT app reviews and reports what users complain about most, how common each complaint is, and real quotes for each one.</p>
           <ul>
             <li>Login problems are 5% of all reviews but 22% of 1–2 star reviews</li>
-            <li>Classifier scored against 100 hand-labelled reviews: theme F1 0.78–0.80 across 4 runs</li>
-            <li>Every quote is checked word for word in code; all percentages computed in code</li>
+            <li>Accuracy checked against 100 reviews I labelled by hand (F1 score 0.78–0.80)</li>
+            <li>Every quote is matched word for word to a real review, and all numbers are calculated in code, not by the AI</li>
           </ul>
           <div class="actions" style="margin-top: 8px">
             <a class="btn btn-dark" href="https://github.com/prem-devara/Project-UserFeedback-insights-agent">View on GitHub</a>
@@ -168,7 +168,7 @@
           </div>
         </div>
         <div class="project-results">
-          <p class="caption">Top complaints in negative and mixed reviews (weighted, 95% interval)</p>
+          <p class="caption">Top complaints in negative and mixed reviews (likely range in brackets)</p>
           <div class="table-box">
             <table>
               <thead>
@@ -184,7 +184,7 @@
               </tbody>
             </table>
           </div>
-          <p style="margin: 12px 0 0; font-size: 13px; color: var(--muted)">30,308 ChatGPT Android reviews, Jul 2023 – Aug 2024, estimated from a stratified sample of 1,500. † Likely over-counted.</p>
+          <p style="margin: 12px 0 0; font-size: 13px; color: var(--muted)">Based on 1,500 of 30,308 ChatGPT Android reviews (Jul 2023 – Aug 2024), sampled evenly across star ratings. † Likely over-counted.</p>
         </div>
       </article>
       <article class="project" style="margin-top: 24px">

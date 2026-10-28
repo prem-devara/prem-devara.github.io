@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macro-economic factors affecting long-term returns of the S&amp;P 500 — Prem Devara</title>
+<meta name="description" content="Prem Devara's analysis of interest rates, inflation and global indicators against long-term US stock returns. Stevens Institute of Technology, 2023.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ground:#F7F7F5; --surface:#FFFFFF; --ink:#16181D; --body:#3A3F48; --muted:#4A4F59; --line:#DEDFDB; --accent:#1F5FBF; --accent-hover:#174A96; --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); line-height:1.7; }
+  a { color:var(--accent); } a:hover { color:var(--accent-hover); }
+  header { background:var(--surface); border-bottom:1px solid var(--line); }
+  .bar { max-width:760px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .brand { font-weight:700; font-size:18px; color:var(--ink); text-decoration:none; }
+  .back { font-size:15px; font-weight:500; text-decoration:none; padding:12px 0; }
+  main { max-width:760px; margin:0 auto; padding:56px 24px 80px; }
+  .eyebrow { margin:0 0 12px; font-family:var(--mono); font-size:13px; color:var(--accent); letter-spacing:0.04em; }
+  h1 { margin:0; font-size:clamp(28px,4.5vw,40px); line-height:1.2; }
+  .meta { margin:16px 0 0; padding:16px 20px; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:15px; color:var(--body); }
+  .meta p { margin:0; } .meta p + p { margin-top:6px; }
+  article { margin-top:40px; font-size:17px; color:var(--body); }
+  article p { margin:0 0 20px; }
+  footer { border-top:1px solid var(--line); }
+  .foot { max-width:760px; margin:0 auto; padding:24px; font-size:14px; color:var(--muted); }
+  article h2 { margin:40px 0 12px; font-size:22px; color:var(--ink); }
+  article h3 { margin:28px 0 8px; font-size:18px; color:var(--ink); }
+  figure { margin:28px 0; } figure img { width:100%; height:auto; border:1px solid var(--line); border-radius:8px; background:#fff; }
+  figcaption { margin-top:8px; font-size:14px; color:var(--muted); }
+  .tbl { overflow-x:auto; margin:0 0 20px; } table { border-collapse:collapse; width:100%; font-size:15px; }
+  th, td { padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; } th { color:var(--ink); border-bottom:2px solid var(--ink); }
+  td.n, th.n { text-align:right; font-family:var(--mono); } td:first-child { white-space:nowrap; }
+  .refs { font-size:15px; } .refs li { word-break:break-word; }
+  ol, ul { margin:0 0 20px; padding-left:24px; } li { margin-bottom:6px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html">Prem Devara</a>
+    <a class="back" href="index.html#writing">← All writing</a>
+  </div>
+</header>
+<main>
+  <p class="eyebrow">ANALYSIS · MARKETS · 2023</p>
+  <h1>Macro-economic factors affecting long-term returns of the S&amp;P 500</h1>
+  <div class="meta"><p>Written for Business Analytics: Data, Models and Decisions, Stevens Institute of Technology, April 2023.</p></div>
+  <article>
+    <h2>Introduction</h2>
+    <p>The US S&amp;P 500 index has returned an exceptional 500% on a nominal basis over the last 14 years, dwarfing all other asset classes. But the longest bull run in US history had an enormous tailwind in the form of unprecedented quantitative easing by the Federal Reserve, which ended last year (2022) in response to rising inflation. Historically, higher interest rates have resulted in slower economic activity, which corresponds to lower corporate earnings.</p>
+    <p>Many large US banks have highlighted a greater chance of a US recession in the coming year in their letters to investors, cautioning them to expect lower returns from the US market and advising them to diversify into other asset classes.</p>
+    <p>Historically, stocks have generated higher returns than any other asset class over the long term. The S&amp;P 500 index, which represents about 80% of the total market capitalization of all publicly traded US stocks, has been the general benchmark for investors: one could invest in an index fund and rest assured. But this time-tested strategy could change in the next decade, as interest rates have been regressing towards the historical mean of 4.9% for the 10-year US Treasury note.</p>
+    <p>Interest rates have a greater impact on the economy in the short term, but the data shows that higher interest rates have not always pushed the economy into recession. Other factors may have considerable influence on economic growth.</p>
+
+    <h2>Data sets and data analysis</h2>
+    <p>Data sets are sourced from NYU (historical returns for the US), OECD (US annual inflation rate), the St. Louis Fed's FRED (nominal dollar index and global economic policy uncertainty index), the New York Fed (Global Supply Chain Pressure Index) and Nasdaq (crude oil prices).</p>
+
+    <figure><img src="macro-10y-rate.png" alt="Area chart of the US 10-year Treasury bond rate, 1927 to 2022"><figcaption>Exhibit 1: US 10-year Treasury bond rate, 1927–2022. Source: NYU, historical returns for the US.</figcaption></figure>
+
+    <div class="tbl"><table>
+      <thead><tr><th>US 10-year Treasury bond rate, 1927–2021</th><th class="n">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Mean</td><td class="n">4.90%</td></tr>
+        <tr><td>Median</td><td class="n">3.98%</td></tr>
+        <tr><td>Standard deviation</td><td class="n">2.89%</td></tr>
+        <tr><td>Minimum</td><td class="n">0.93%</td></tr>
+        <tr><td>Maximum</td><td class="n">13.89%</td></tr>
+        <tr><td>Years</td><td class="n">96</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-12px">Exhibit 2: Descriptive statistics of the annual US 10-year Treasury bond rate.</p>
+
+    <figure><img src="macro-inflation.png" alt="Area chart of the US annual inflation rate, 1927 to 2021"><figcaption>Exhibit 3: US annual inflation rate, 1927–2021. Source: OECD, CPI inflation.</figcaption></figure>
+
+    <figure><img src="macro-inflation-vs-rate.png" alt="Scatter plot of US inflation against the 10-year Treasury rate with an upward trend line"><figcaption>Exhibit 4: US inflation and the 10-year Treasury rate move together (positive correlation), 1927–2021.</figcaption></figure>
+
+    <div class="tbl"><table>
+      <thead><tr><th>Period</th><th class="n">S&amp;P 500 (incl. dividends)</th><th class="n">3-month T-bills</th><th class="n">10-yr T-bond</th><th class="n">Baa corp. bond</th><th class="n">Real estate</th><th class="n">Gold</th></tr></thead>
+      <tbody>
+        <tr><td>1928–2022</td><td class="n">9.64%</td><td class="n">3.28%</td><td class="n">4.57%</td><td class="n">6.68%</td><td class="n">4.23%</td><td class="n">4.83%</td></tr>
+        <tr><td>1973–2022</td><td class="n">10.24%</td><td class="n">4.34%</td><td class="n">6.12%</td><td class="n">8.43%</td><td class="n">5.38%</td><td class="n">6.91%</td></tr>
+        <tr><td>2013–2022</td><td class="n">12.44%</td><td class="n">0.78%</td><td class="n">0.12%</td><td class="n">3.45%</td><td class="n">7.59%</td><td class="n">0.96%</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-12px">Exhibit 5: Average annual returns by asset class. The S&amp;P 500 outperformed over the last ten years (2013–2022).</p>
+
+    <p>US government Treasury bonds are considered the safest investment. Yields usually rise with longer maturities, giving an upward-sloping "normal" yield curve. When investor confidence is low because of a bleak economic outlook, the opposite happens: an inverted, downward-sloping curve, which signals a recession. The Federal Reserve started raising interest rates in 2022 to bring inflation, which peaked at about 9% in mid-2022, back towards its 2% target. In a high-interest-rate environment, slower growth can be expected, which could weigh on corporate earnings and stock returns.</p>
+
+    <h2>Analyzing macro-economic factors</h2>
+    <p>Apart from interest rates, other factors influence economic growth. Since the US is a major trading partner for many nations, I considered four global indicators:</p>
+    <ol>
+      <li>Nominal Broad U.S. Dollar Index (St. Louis Fed, FRED)</li>
+      <li>Global Supply Chain Pressure Index (Federal Reserve Bank of New York)</li>
+      <li>Global Economic Policy Uncertainty Index (St. Louis Fed, FRED)</li>
+      <li>Crude oil prices (Nasdaq)</li>
+    </ol>
+
+    <div class="tbl"><table>
+      <thead><tr><th>Factor</th><th class="n">Correlation with S&amp;P 500</th></tr></thead>
+      <tbody>
+        <tr><td>Global Supply Chain Pressure Index</td><td class="n">0.88</td></tr>
+        <tr><td>Nominal Broad U.S. Dollar Index</td><td class="n">0.62</td></tr>
+        <tr><td>Global Economic Policy Uncertainty Index</td><td class="n">0.61</td></tr>
+        <tr><td>Crude oil price</td><td class="n">0.10</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-12px">Exhibit 6: Correlation of each factor with the S&amp;P 500 over the period.</p>
+
+    <p>Crude oil prices have the lowest correlation with the S&amp;P 500, lower than one might expect for an energy-intensive economy. This is consistent with the US's growing energy independence: the US has been a net exporter of refined petroleum products for over a decade and, since 2020, a net exporter of petroleum overall.</p>
+    <p>The Global Supply Chain Pressure Index has the highest correlation, followed by the dollar index and policy uncertainty. A high correlation shows these indicators moved together with the S&amp;P 500 over the period; it does not show that one drives the other, since series that trend over the same years tend to correlate. They are best read as indicators worth watching alongside interest rates, not as predictors of returns.</p>
+
+    <h2>References and data sources</h2>
+    <ul class="refs">
+      <li><a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html">NYU Stern: Historical returns on stocks, bonds and bills (Damodaran)</a></li>
+      <li><a href="https://fred.stlouisfed.org/series/SP500">FRED: S&amp;P 500</a></li>
+      <li><a href="https://data.oecd.org/price/inflation-cpi.htm">OECD: Inflation (CPI)</a></li>
+      <li><a href="https://fred.stlouisfed.org/series/DTWEXBGS">FRED: Nominal Broad U.S. Dollar Index</a></li>
+      <li><a href="https://www.nasdaq.com/market-activity/commodities/cl:nmx/historical">Nasdaq: Crude oil historical prices</a></li>
+      <li><a href="https://www.msci.com/end-of-day-history?chart=regional&amp;priceLevel=41&amp;scope=R&amp;style=C&amp;currency=15&amp;size=36&amp;indexId=13">MSCI: End-of-day index history</a></li>
+      <li><a href="https://www.eia.gov/energyexplained/oil-and-petroleum-products/imports-and-exports.php">EIA: Oil and petroleum products imports and exports</a></li>
+    </ul>
+
+  </article>
+</main>
+<footer><div class="foot">© 2026 Prem Devara · <a href="index.html">premdevara.com</a></div></footer>
+</body>
+</html>

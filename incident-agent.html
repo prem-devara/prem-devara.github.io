@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incident Retrospective Agent — Prem Devara</title>
+<meta name="description" content="Project summary of Prem Devara's Incident Retrospective Agent: an AI agent that drafts outage retrospectives, scored against 5 real postmortems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ground:#F7F7F5; --surface:#FFFFFF; --ink:#16181D; --body:#3A3F48; --muted:#4A4F59; --line:#DEDFDB; --accent:#1F5FBF; --accent-hover:#174A96; --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); line-height:1.7; }
+  a { color:var(--accent); } a:hover { color:var(--accent-hover); }
+  header { background:var(--surface); border-bottom:1px solid var(--line); }
+  .bar { max-width:760px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .brand { font-weight:700; font-size:18px; color:var(--ink); text-decoration:none; }
+  .back { font-size:15px; font-weight:500; text-decoration:none; padding:12px 0; }
+  main { max-width:760px; margin:0 auto; padding:56px 24px 80px; }
+  .eyebrow { margin:0 0 12px; font-family:var(--mono); font-size:13px; color:var(--accent); letter-spacing:0.04em; }
+  h1 { margin:0; font-size:clamp(28px,4.5vw,40px); line-height:1.2; }
+  .meta { margin:16px 0 0; padding:16px 20px; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:15px; color:var(--body); }
+  .meta p { margin:0; } .meta p + p { margin-top:6px; }
+  article { margin-top:40px; font-size:17px; color:var(--body); }
+  article p { margin:0 0 20px; }
+  footer { border-top:1px solid var(--line); }
+  .foot { max-width:760px; margin:0 auto; padding:24px; font-size:14px; color:var(--muted); }
+  article h2 { margin:36px 0 10px; font-size:20px; color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html">Prem Devara</a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </div>
+</header>
+<main>
+  <p class="eyebrow">PROJECT · AI AGENT · 2026</p>
+  <h1>Incident Retrospective Agent</h1>
+  <div class="meta"><p>An AI agent that drafts outage retrospectives, scored against 5 companies' own root cause analyses.</p></div>
+  <article>
+    <h2>Problem</h2>
+    <p>Incident retrospectives follow a set structure: timeline, causes, impact and action items. That makes them a good use case for an AI agent. I built one to draft retrospectives from published outage timelines, and tested how well it works by scoring its findings against each company's own root cause analysis.</p>
+
+    <h2>The build</h2>
+    <p>The agent works in four steps. First, Claude Haiku lists every event in the timeline. Second, it identifies what contributed to the outage, quoting evidence from the timeline for each factor so every claim can be traced back. Third, it writes the impact and action items.</p>
+    <p>Step 4 is a reflection step: a second, stronger model (Claude Sonnet) reviews the draft against the original timeline. For each factor, it decides to keep it, remove it if the timeline doesn't support it, or merge it with a duplicate. It also tightens vague action items. Python code, not the AI, then applies those decisions and records every change, so the change log matches exactly what changed.</p>
+
+    <h2>Evals</h2>
+    <p>I tested the agent on 5 real outages: GitLab (2017), AWS S3 (2017), CrowdStrike (2024), Google Cloud (2025) and AWS DynamoDB (2025). For each one, I wrote an answer key from the company's own published analysis, and the agent never saw it. The agent ran 5 times per outage.</p>
+    <p>A second AI acting as a judge (Claude Sonnet) compared each factor with the answer key. Python code then calculated two scores: recall, the share of the company's published causes the agent found, and precision, the share of the agent's causes that were correct. Before relying on the judge, I tested it: I planted 5 wrong factors, and it caught all 5 in each of 3 runs. I also reviewed its decisions by hand on all 5 outages.</p>
+
+    <h2>Results</h2>
+    <p>The agent found 92–100% of each company's published causes, and none of the causes it listed were wrong. On CrowdStrike, some runs went further than the company's own findings. CrowdStrike's analysis focused on a faulty content update. In some runs the agent also pointed out that the software runs deep inside the operating system (at kernel level). That's why one bad update could crash entire computers instead of just the app.</p>
+
+    <h2>What I learned</h2>
+    <p>Having the same small model review its own work did nothing. It kept all 12 of 12 factors and logged changes it never made. Switching the reflection step to Claude Sonnet, and letting Python code apply its decisions, fixed both problems.</p>
+    <p>Twice, a low score turned out to be a scoring problem, not an agent problem. The agent had combined two causes into one point, and the judge could only credit one. I found this by reading the agent's actual answers instead of trusting the number. I also never changed an answer key after seeing the results to make a score look better.</p>
+
+    <p style="margin-top:36px"><a href="https://github.com/prem-devara/Project-Incident-retro-agent/blob/main/README.md">View the code and full README on GitHub →</a></p>
+  </article>
+</main>
+<footer><div class="foot">© 2026 Prem Devara · <a href="index.html">premdevara.com</a></div></footer>
+</body>
+</html>

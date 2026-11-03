@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User Feedback Insights Agent — Prem Devara</title>
+<meta name="description" content="Project summary of Prem Devara's User Feedback Insights Agent: an AI agent that sorts 30,000 ChatGPT app reviews into themes, checked against hand labels.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ground:#F7F7F5; --surface:#FFFFFF; --ink:#16181D; --body:#3A3F48; --muted:#4A4F59; --line:#DEDFDB; --accent:#1F5FBF; --accent-hover:#174A96; --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); line-height:1.7; }
+  a { color:var(--accent); } a:hover { color:var(--accent-hover); }
+  header { background:var(--surface); border-bottom:1px solid var(--line); }
+  .bar { max-width:760px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .brand { font-weight:700; font-size:18px; color:var(--ink); text-decoration:none; }
+  .back { font-size:15px; font-weight:500; text-decoration:none; padding:12px 0; }
+  main { max-width:760px; margin:0 auto; padding:56px 24px 80px; }
+  .eyebrow { margin:0 0 12px; font-family:var(--mono); font-size:13px; color:var(--accent); letter-spacing:0.04em; }
+  h1 { margin:0; font-size:clamp(28px,4.5vw,40px); line-height:1.2; }
+  .meta { margin:16px 0 0; padding:16px 20px; background:var(--surface); border:1px solid var(--line); border-radius:8px; font-size:15px; color:var(--body); }
+  .meta p { margin:0; } .meta p + p { margin-top:6px; }
+  article { margin-top:40px; font-size:17px; color:var(--body); }
+  article p { margin:0 0 20px; }
+  footer { border-top:1px solid var(--line); }
+  .foot { max-width:760px; margin:0 auto; padding:24px; font-size:14px; color:var(--muted); }
+  article h2 { margin:36px 0 10px; font-size:20px; color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html">Prem Devara</a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </div>
+</header>
+<main>
+  <p class="eyebrow">PROJECT · AI AGENT · 2026</p>
+  <h1>User Feedback Insights Agent</h1>
+  <div class="meta"><p>An AI agent that finds the top complaints across 30,000 ChatGPT app reviews, checked against my own labels.</p></div>
+  <article>
+    <h2>Problem</h2>
+    <p>Reading thousands of app reviews by hand is slow, and star ratings alone don't say why users are unhappy. I built an AI agent to sort reviews into themes, measure its accuracy against my own labels, and find what ChatGPT Android users complain about most.</p>
+
+    <h2>The build</h2>
+    <p>The agent starts with 196,727 raw reviews and removes empty, duplicate, very short and non-English ones, leaving 30,308. Because 76% of reviews are 5-star, a random sample would contain very few complaints. So the agent takes 500 reviews from each rating group (1–2 stars, 3 stars, 4–5 stars), 1,500 in total. It then adjusts the results so each group counts in proportion to its real size.</p>
+    <p>Claude Sonnet proposed a list of themes from two separate batches of reviews, and 11 themes appeared in both. I reviewed the list and settled on 12 themes, each with a written definition of what it includes and excludes. Claude Haiku then assigns every review to one or more themes, and Claude Sonnet writes a summary of each theme using real quotes from users.</p>
+    <p>Python code, not the AI, checks that every quote appears word for word in the original review. The same code calculates every percentage and its confidence range (the range the true figure most likely falls in), so the numbers are exact and repeatable. These checks caught the AI inventing a theme that wasn't on the approved list.</p>
+
+    <h2>Evals</h2>
+    <p>Before building anything, I set aside 100 reviews and labelled them myself as an answer key. Across 4 runs, the agent's theme labels matched mine with an F1 score of 0.78–0.80 (1.0 means perfect agreement), and it judged sentiment (positive, negative or mixed) correctly 79–83% of the time. I made only one round of prompt fixes, so the agent wasn't tuned just to pass my test. After my first 20 labels, I noticed "missing features" was becoming a catch-all, so I tightened its definition before labelling the rest.</p>
+
+    <h2>Results</h2>
+    <p>Wrong or outdated answers are the most common complaint, at 31% of 1–3 star reviews. Login problems make up 5% of all reviews but 22% of 1–2 star reviews. Crashes (10% of all reviews, 27% of 1–2 star) and bias or censorship (3%, 12%) show the same pattern: a few issues cause a large share of the lowest ratings. Help with studying and learning is the main reason people like the app. Pricing complaints rose from 13% to 21% between late 2023 and mid-2024, but the confidence ranges overlap, so I reported this as a possible trend, not a confirmed one.</p>
+
+    <h2>What I learned</h2>
+    <p>The biggest accuracy gain came from writing down the rules I was already using in my head. For example, a review that praises the app while also complaining still counts as praise. Adding that one rule raised praise detection from 68% to 80%. I also learned not to trust a single test run: a drop in accuracy that looked real was just normal variation between runs.</p>
+
+    <p style="margin-top:36px"><a href="https://github.com/prem-devara/Project-UserFeedback-insights-agent/blob/main/README.md">View the code and full README on GitHub →</a></p>
+  </article>
+</main>
+<footer><div class="foot">© 2026 Prem Devara · <a href="index.html">premdevara.com</a></div></footer>
+</body>
+</html>

@@ -224,6 +224,37 @@
           </div>
         </div>
       </article>
+      <article class="project" style="margin-top: 24px">
+        <div class="project-text">
+          <p class="tags">PYTHON · CLAUDE SONNET · MCP SERVER</p>
+          <h3>RFP Analysis Agent</h3>
+          <p class="desc">An AI agent that reads an RFP and builds a compliance checklist: every requirement with its category, page and exact wording. Tested against hand-built answer keys for three public RFPs.</p>
+          <ul>
+            <li>Reads RFPs through an MCP server, which also supports Q&amp;A in the Claude desktop app</li>
+            <li>Code checks every quote and confirms no page was skipped</li>
+            <li>84–95% recall across RFPs of 35 to 112 pages</li>
+          </ul>
+          <div class="actions" style="margin-top: 8px">
+            <a class="btn btn-outline" href="rfp-agent.html">Executive summary</a>
+            <a class="btn btn-outline" href="https://github.com/prem-devara/Project-RFP-Agent/blob/main/README.md">View on GitHub</a>
+          </div>
+        </div>
+        <div class="project-results">
+          <p class="caption">Results on 3 public RFPs (mean of 3 runs)</p>
+          <div class="table-box">
+            <table>
+              <thead>
+                <tr><th scope="col">RFP</th><th scope="col" class="num">Pages</th><th scope="col" class="num">Recall</th><th scope="col" class="num">Precision</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Ann Arbor</td><td class="num">35</td><td class="num">95%</td><td class="num">90%</td></tr>
+                <tr><td>Kingsport</td><td class="num">37</td><td class="num">94%</td><td class="num">94%</td></tr>
+                <tr><td>New York OIG</td><td class="num">112</td><td class="num">84%</td><td class="num">95%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
